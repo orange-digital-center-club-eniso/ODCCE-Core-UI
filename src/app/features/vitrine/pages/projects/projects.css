@@ -1,0 +1,9 @@
+/* Cache la barre de scroll horizontale, tout en gardant le scroll fonctionnel (souris, trackpad, tactile) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
