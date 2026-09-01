@@ -1,48 +1,33 @@
-<footer class="bg-[#0a0a0a] text-neutral-400 relative overflow-hidden">
-  <!-- Texture de points en fond, cohérente avec le reste du site -->
-  <div class="absolute inset-0 opacity-[0.03] bg-dot-grid bg-[length:26px_26px] pointer-events-none"></div>
+<footer class="bg-[#0a0a0a] text-neutral-400 relative overflow-hidden border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-6 pt-16 pb-8">
 
-  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
 
       <!-- Colonne 1 : Marque -->
       <div>
         <div class="flex items-center gap-2.5 mb-4">
-          <img src="/images/logo-odcce.png" alt="ODCCE" class="w-9 h-9 rounded-lg object-cover">
+          <img src="/odcce.jpeg" alt="ODCCE" class="w-8 h-8 rounded-md object-cover">
           <span class="font-bold text-white text-lg">ODCCE</span>
         </div>
-        <p class="text-sm leading-relaxed mb-5">
-          Providing hands-on incubation, technical training, and real product-building — right at the heart of Tunisia's tech scene.
+        <p class="text-sm leading-relaxed mb-5 max-w-sm">
+          Hands-on incubation, technical training, and real product-building — right at the heart of Tunisia's tech scene.
         </p>
         <div class="flex items-center gap-3">
-          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
-            <img src="/icons/social-facebook.svg" alt="Facebook" class="w-4 h-4">
+          <a href="https://www.facebook.com/otc.eniso" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
+            <img src="/fb2.svg" alt="Facebook" class="w-4 h-4">
           </a>
-          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
-            <img src="/icons/social-instagram.svg" alt="Instagram" class="w-4 h-4">
+          <a href="https://www.instagram.com/orangedigitalcenterclubeniso" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
+            <img src="/insta2.svg" alt="Instagram" class="w-4 h-4">
           </a>
-          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
-            <img src="/icons/social-linkedin.svg" alt="LinkedIn" class="w-4 h-4">
+          <a href="https://www.linkedin.com/company/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500/20 hover:border-orange-500/40 transition-colors">
+            <img src="/in2.svg" alt="LinkedIn" class="w-4 h-4">
           </a>
         </div>
       </div>
 
-      <!-- Colonne 2 : Quick Links -->
+      <!-- Colonne 2 : Get in Touch -->
       <div>
-        <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-5">Quick Links</h4>
-        <ul class="space-y-3 text-sm">
-          <li><a href="#divisions" class="hover:text-orange-400 transition-colors">Divisions</a></li>
-          <li><a href="#projects" class="hover:text-orange-400 transition-colors">Featured Projects</a></li>
-          <li><a href="#events" class="hover:text-orange-400 transition-colors">Events</a></li>
-          <li><a href="#trainings" class="hover:text-orange-400 transition-colors">Trainings</a></li>
-          <li><a href="#team" class="hover:text-orange-400 transition-colors">Our Team</a></li>
-        </ul>
-      </div>
-
-      <!-- Colonne 3 : Get in Touch -->
-      <div>
-        <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-5">Get in Touch</h4>
+        <h4 class="text-white font-semibold text-sm mb-5">Get in Touch</h4>
         <ul class="space-y-4 text-sm">
           <li class="flex items-center gap-3">
             <img src="/icons/e-mail.svg" alt="" class="w-5 h-5 shrink-0">
@@ -50,7 +35,7 @@
           </li>
           <li class="flex items-center gap-3">
             <img src="/icons/round-pushpin.svg" alt="" class="w-5 h-5 shrink-0">
-            <span>ENISo, Sousse Tech Park, Sousse, TN</span>
+            <span>Sousse Erriadh 4023, Tunisie</span>
           </li>
           <li class="flex items-center gap-3">
             <img src="/icons/telephone-receiver.svg" alt="" class="w-5 h-5 shrink-0">
@@ -59,30 +44,10 @@
         </ul>
       </div>
 
-      <!-- Colonne 4 : Newsletter -->
-      <div>
-        <h4 class="text-white font-semibold text-sm uppercase tracking-wide mb-5">Newsletter</h4>
-        <p class="text-sm mb-4">Get updates on events, trainings, and new projects.</p>
-        <form class="flex items-center gap-2">
-          <input
-            type="email"
-            placeholder="Your email"
-            class="flex-1 min-w-0 bg-white/5 border border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          >
-          <button
-            type="submit"
-            aria-label="Subscribe"
-            class="shrink-0 w-10 h-10 rounded-lg bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center transition-colors"
-          >
-            →
-          </button>
-        </form>
-      </div>
-
     </div>
 
     <!-- Séparation avant la barre légale -->
-    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+    <div class="h-px w-full bg-white/10 my-10"></div>
 
     <!-- Barre légale -->
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">

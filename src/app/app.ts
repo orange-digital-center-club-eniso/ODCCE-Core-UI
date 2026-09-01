@@ -11,6 +11,8 @@ import { EventsComponent } from './features/vitrine/pages/events/events'
 import { CommunityComponent } from './features/vitrine/pages/community/community';
 import { StatComponent } from './features/vitrine/pages/stat/stat';
 import { TeamComponent } from './features/vitrine/pages/team/team';
+import { PartnersComponent } from './features/vitrine/pages/partners/partners';
+
 
 
 
@@ -20,7 +22,7 @@ import { TeamComponent } from './features/vitrine/pages/team/team';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar, Footer, HomeComponent, AboutComponent, PillarsComponent,DivisionsComponent, ProjectsComponent, EventsComponent, CommunityComponent, StatComponent, TeamComponent],
+  imports: [Navbar, Footer, HomeComponent, AboutComponent, PillarsComponent,DivisionsComponent, ProjectsComponent, EventsComponent, CommunityComponent, StatComponent, TeamComponent, PartnersComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
