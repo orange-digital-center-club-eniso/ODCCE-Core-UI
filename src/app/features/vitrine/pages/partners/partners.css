@@ -1,0 +1,19 @@
+@keyframes scroll-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll-marquee 30s linear infinite;
+}
+
+/* Met l'animation en pause au survol de la souris */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

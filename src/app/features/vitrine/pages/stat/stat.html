@@ -1,15 +1,34 @@
-<div class="bg-[#121212] py-16 mt-16">
+<div #statsSection class="bg-[#121212] py-16 mt-16">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
-      <div *ngFor="let stat of stats; let i = index"
-           class="flex flex-col items-center justify-center p-6 group cursor-default animate-fade-in-up"
-           [style.animation-delay.ms]="i * 150">
+      <!-- Stat 1 -->
+      <div class="flex flex-col items-center justify-center p-6 group cursor-default">
         <span class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#FF7900] tracking-tight mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(255,121,0,0.5)]">
-          {{ stat.value }}
+          {{ membersCount }}+
         </span>
         <span class="text-xs md:text-sm font-semibold tracking-widest text-gray-400 uppercase transition-colors duration-300 group-hover:text-gray-200">
-          {{ stat.label }}
+          ACTIVE MEMBERS
+        </span>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="flex flex-col items-center justify-center p-6 group cursor-default">
+        <span class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#FF7900] tracking-tight mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(255,121,0,0.5)]">
+          {{ projectsCount }}+
+        </span>
+        <span class="text-xs md:text-sm font-semibold tracking-widest text-gray-400 uppercase transition-colors duration-300 group-hover:text-gray-200">
+          COMPLETED PROJECTS
+        </span>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="flex flex-col items-center justify-center p-6 group cursor-default">
+        <span class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#FF7900] tracking-tight mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_rgba(255,121,0,0.5)]">
+          {{ trainingsCount }}+
+        </span>
+        <span class="text-xs md:text-sm font-semibold tracking-widest text-gray-400 uppercase transition-colors duration-300 group-hover:text-gray-200">
+          ANNUAL TRAININGS
         </span>
       </div>
 

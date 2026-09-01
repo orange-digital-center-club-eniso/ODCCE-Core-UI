@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-//définition de la structure (le contrat) d'une division technique
 interface Division {
   id: string;
-  name: string; //nom affichée sur le bouton
-  title: string; //titre complet affichée dans la carte3
-  description: string; //Texte descriptif détaillé de la division
-  image: string; //Chemin vers l'image illustrative
+  name: string;
+  title: string;
+  description: string;
+  image: string;
   iconName: string;
 }
 
 @Component({
   selector: 'app-divisions',
   standalone: true,
-  imports: [CommonModule], // Nécessaire pour utiliser les directives Angular comme *ngFor ou [ngClass]
+  imports: [CommonModule],
   templateUrl: './divisions.html',
   styleUrl: './divisions.css',
 })
 export class DivisionsComponent {
-  Math = Math;
-
   divisions: Division[] = [
     {
       id: 'iot',
@@ -77,33 +74,45 @@ export class DivisionsComponent {
     },
   ];
 
-  // On duplique le tableau pour créer l'effet de boucle infinie
-  displayDivisions = [...this.divisions, ...this.divisions, ...this.divisions];
+  activeIndex = 0;
+  currentRotation = 0;
+  private isTransitioning = false; // Verrou pour éviter l'affolement du survol
 
-  activeDivision: Division = this.divisions[0];
+  setActive(index: number) {
+    const normalizedActive = this.activeIndex % this.divisions.length;
 
-  selectDivision(div: Division) {
-    this.activeDivision = div;
-  }
+    // Si on est déjà sur cette carte ou pendant qu'elle tourne, on ignore
+    if (normalizedActive === index || this.isTransitioning) return;
 
-  getActiveIndex(): number {
-    // On cherche l'index dans le bloc du milieu pour que le carrousel ait toujours de la marge de chaque côté
-    const baseIndex = this.divisions.findIndex((d) => d.id === this.activeDivision.id);
-    return baseIndex + this.divisions.length;
-  }
-  getTranslateX(): string {
-    const activeIndex = this.getActiveIndex();
-    const gap = 20; // gap-5 en px
-    let offset = 0;
+    this.isTransitioning = true;
+    const total = this.divisions.length;
+    const angleStep = 360 / total;
 
-    for (let i = 0; i < activeIndex; i++) {
-      const isActive = this.displayDivisions[i].id === this.activeDivision.id;
-      offset += (isActive ? 340 : 200) + gap;
+    let diff = index - normalizedActive;
+    if (diff <= 0) {
+      diff += total;
     }
 
-    // + la moitié de la carte active pour la centrer précisément
-    offset += 170; // 340 / 2
+    this.activeIndex = index;
+    this.currentRotation -= diff * angleStep;
 
-    return `calc(50% - ${offset}px)`;
+    // Libère le verrou une fois que l'animation CSS est terminée (correspond à duration-500)
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 550);
+  }
+
+  getContainerTransform(): string {
+    return `rotateY(${this.currentRotation}deg)`;
+  }
+
+  getCardStyle(index: number) {
+    const angleStep = 360 / this.divisions.length;
+    const angle = index * angleStep;
+    const radius = 340;
+
+    return {
+      transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+    };
   }
 }

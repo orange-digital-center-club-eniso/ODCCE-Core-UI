@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export interface TeamMember {
@@ -17,10 +17,12 @@ export interface TeamMember {
   templateUrl: './team.html',
   styleUrls: ['./team.css'],
 })
-export class TeamComponent implements OnInit, OnDestroy {
-  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+export class TeamComponent implements AfterViewInit, OnDestroy {
+  @ViewChild('marqueeWrapper') marqueeWrapper!: ElementRef;
 
-  private autoPlayInterval: any;
+  paused = false;
+  isVisible = false;
+  private observer!: IntersectionObserver;
 
   members: TeamMember[] = [
     {
@@ -88,38 +90,27 @@ export class TeamComponent implements OnInit, OnDestroy {
     },
   ];
 
-  ngOnInit() {
-    this.startAutoPlay();
-  }
+  ngAfterViewInit() {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.isVisible = true; // Déclenche l'animation
+            this.observer.disconnect(); // On arrête d'observer une fois lancé
+          }
+        });
+      },
+      { threshold: 0.1 },
+    ); // Se déclenche dès que 10% de la section est visible
 
-  ngOnDestroy() {
-    this.stopAutoPlay();
-  }
-
-  startAutoPlay() {
-    this.autoPlayInterval = setInterval(() => {
-      if (this.scrollContainer) {
-        const el = this.scrollContainer.nativeElement;
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
-          el.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          el.scrollBy({ left: 324, behavior: 'smooth' });
-        }
-      }
-    }, 3500);
-  }
-
-  stopAutoPlay() {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
+    if (this.marqueeWrapper) {
+      this.observer.observe(this.marqueeWrapper.nativeElement);
     }
   }
 
-  scrollLeft() {
-    this.scrollContainer.nativeElement.scrollBy({ left: -324, behavior: 'smooth' });
-  }
-
-  scrollRight() {
-    this.scrollContainer.nativeElement.scrollBy({ left: 324, behavior: 'smooth' });
+  ngOnDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 }

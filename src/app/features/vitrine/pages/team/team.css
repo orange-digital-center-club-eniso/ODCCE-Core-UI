@@ -1,7 +1,33 @@
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 35s linear infinite;
+  animation-play-state: paused; /* En pause par défaut au chargement de la page */
+}
+
+/* S'active uniquement quand la section arrive à l'écran */
+.marquee-track.start-animation {
+  animation-play-state: running;
+}
+
+/* S'arrête si la souris est dessus */
+.marquee-track.marquee-paused {
+  animation-play-state: paused !important;
 }

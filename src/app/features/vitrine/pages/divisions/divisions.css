@@ -1,0 +1,20 @@
+/* Active la perspective 3D pour la scène */
+.perspective-container {
+  perspective: 1400px;
+}
+
+/* Le cylindre/chaîne entière qui tourne sur l'axe Y */
+.carousel-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Positionnement initial de chaque carte au centre du conteneur avant d'appliquer le translateZ */
+.card-3d {
+  left: calc(50% - 150px); /* Moitié de la largeur de la carte (300px / 2) */
+  top: calc(50% - 210px);  /* Moitié de la hauteur de la carte (420px / 2) */
+  backface-visibility: hidden;
+}
