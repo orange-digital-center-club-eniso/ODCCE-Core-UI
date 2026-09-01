@@ -1,0 +1,70 @@
+<section id="divisions" class="py-24 bg-[#0a0a0a] text-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- En-tête de section -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-orange-500 bg-orange-500/10 border border-orange-500/20 mb-4 uppercase">
+        DIVISIONS
+      </div>
+      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+        6 Technical Divisions to Drive Innovation
+      </h2>
+      <p class="text-neutral-400 text-sm md:text-base leading-relaxed">
+        Hands-on training, real-world projects, and national competitions across emerging technologies.
+      </p>
+    </div>
+
+    <!-- Barre des onglets (Pills) -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-16">
+      <button
+        *ngFor="let div of divisions"
+        (mouseenter)="selectDivision(div)"
+        (click)="selectDivision(div)"
+        [ngClass]="activeDivision.id === div.id ? 'bg-orange-500/20 border-orange-500 text-orange-400 shadow-lg shadow-orange-500/10' : 'bg-neutral-900/60 border-neutral-800 text-neutral-300 hover:border-neutral-700 hover:text-white'"
+        class="px-6 py-3 rounded-xl border text-sm font-medium transition-all duration-300 cursor-pointer">
+        {{ div.name }}
+      </button>
+    </div>
+
+    <!-- Carrousel en boucle infinie -->
+    <div class="relative w-full max-w-6xl mx-auto h-[480px] flex items-center justify-center my-12 overflow-hidden px-4">
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-30"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-30"></div>
+      <div class="flex items-center justify-center gap-5 transition-transform duration-700 ease-in-out"
+           [ngStyle]="{ 'transform': 'translateX(' + getTranslateX() + ')' }">
+        <div *ngFor="let div of displayDivisions"
+             (click)="selectDivision(div)"
+             class="relative rounded-3xl overflow-hidden border transition-all duration-500 ease-in-out cursor-pointer group shrink-0"
+             [ngClass]="{
+       'w-[340px] h-[460px] z-20 border-transparent ring-1 ring-orange-500/50 shadow-2xl shadow-orange-500/20 opacity-100 scale-100': activeDivision.id === div.id,
+       'w-[200px] h-[360px] z-10 border-neutral-800 opacity-40 hover:opacity-70 scale-95': activeDivision.id !== div.id
+     }">
+
+        <!-- Image de fond -->
+        <img [src]="div.image" [alt]="div.name" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-transparent"></div>
+
+        <!-- Contenu de la carte -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-end h-full">
+
+          <!-- Icône -->
+          <div class="w-10 h-10 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center p-2 mb-3 backdrop-blur-md">
+            <img [src]="'/icons/' + div.iconName" [alt]="div.name" class="w-full h-full object-contain">
+          </div>
+
+          <!-- Titre -->
+          <h4 class="text-xl font-bold mb-2">{{ div.name }}</h4>
+
+          <!-- Description complète sans troncature -->
+          <p class="text-xs text-neutral-300 leading-relaxed transition-all duration-300"
+             [ngClass]="{'opacity-100': activeDivision.id === div.id, 'opacity-0 h-0 overflow-hidden': activeDivision.id !== div.id}">
+            {{ div.description }}
+          </p>
+        </div>
+
+      </div>
+
+      </div>
+    </div>
+  </div>
+</section>
